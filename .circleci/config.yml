@@ -1,0 +1,10 @@
+version: 2.1
+
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:202111-02
+    steps:
+      - checkout
+      - run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+      - run: docker build --platform linux/arm64/v8 -t cypress --target cypress-build .
